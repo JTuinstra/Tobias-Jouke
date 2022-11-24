@@ -114,5 +114,3 @@ submit = Button(window, text='Submit', font='Arial 20 bold', background='dark re
 submit.place(x=175, y=400)
 
 window.mainloop()
-
-# test
