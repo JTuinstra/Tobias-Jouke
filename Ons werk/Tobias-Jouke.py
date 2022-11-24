@@ -3,7 +3,6 @@ from tkinter import *
 from tkinter import messagebox
 
 
-
 def mainscreen():
     window = Tk()
     window.title('KOVAAKS INTO HACK')
