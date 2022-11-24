@@ -20,8 +20,7 @@ def login():
 
     if enterUser.get() == username or capital and enterPass.get() == password:
         messagebox.showinfo(title='VALID', message='LOGIN SUCCESVOL')
-
-        # time.sleep(2)
+        time.sleep(2)
 
         titel.destroy()
         usernameLabel.destroy()
@@ -64,8 +63,7 @@ def login():
         csgo = Label(window, font='Arial 20 bold', text='CSGO', background='dark red')
         csgo.place(x=100, y=275)
 
-        injectcsgo = Button(window, text='Inject CSGO hack', font='Arial 10 bold', background='dark red',
-                            activebackground='red', command=lambda: injectedcsgo(True))
+        injectcsgo = Button(window, text='Inject CSGO hack', font='Arial 10 bold', background='dark red', activebackground='red', command=lambda: injectedcsgo(True))
         injectcsgo.place(x=300, y=275)
 
         valorant = Label(window, text='VALORANT', font='Arial 20 bold', background='dark red')
@@ -117,5 +115,4 @@ submit.place(x=175, y=400)
 
 window.mainloop()
 
-
-#test
+# test
