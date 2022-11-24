@@ -8,12 +8,12 @@ def mainscreen():
     window.title('KOVAAKS INTO HACK')
     window.geometry('700x700')
 
-    scherm = Canvas(window, width=700, height=700, background='red')
+
+    scherm = Frame(window, width=700, height=700, background='red')
     scherm.pack()
 
     frame = Frame(window, width=600, height=600, background='dark red')
     frame.place(x=50, y=50)
-
 
     def login():
         username = ''
@@ -41,6 +41,7 @@ def mainscreen():
                     time.sleep(1)
                     messagebox.showinfo(title='DONE', message='SUCCESFULLY INJECTED')
 
+
             def injectedvalo(injectvalo=False):
                 if injectvalo == True:
                     time.sleep(1)
@@ -65,7 +66,8 @@ def mainscreen():
             csgo = Label(window, font='Arial 20 bold', text='CSGO', background='dark red')
             csgo.place(x=100, y=275)
 
-            injectcsgo = Button(window, text='Inject CSGO hack', font='Arial 10 bold', background='dark red', activebackground='red', command=lambda: injectedcsgo(True))
+            injectcsgo = Button(window, text='Inject CSGO hack', font='Arial 10 bold', background='dark red',
+                                activebackground='red', command=lambda: injectedcsgo(True))
             injectcsgo.place(x=300, y=275)
 
             valorant = Label(window, text='VALORANT', font='Arial 20 bold', background='dark red')
@@ -89,15 +91,14 @@ def mainscreen():
                                   activebackground='red', command=lambda: injectedletter(True))
             injectletter.place(x=400, y=575)
 
-
-            logout=Button(window,text='Uitloggen',font='Arial 20 bold',background='red',activebackground='red',command=lambda: [window.destroy(),mainscreen()])
-            logout.place(x=400,y=150)
+            logout = Button(window, text='Uitloggen', font='Arial 20 bold', background='red', activebackground='red',
+                            command=lambda: [window.destroy(), mainscreen()])
+            logout.place(x=400, y=150)
 
 
 
         else:
             messagebox.showerror(title='ERROR', message='FOUTE GEGEVENS')
-
 
     titel = Label(window, text='HACKS VAN TOBIAS', font='Papyrus 25 bold', background='dark red')
     titel.place(x=125, y=75)
@@ -119,5 +120,6 @@ def mainscreen():
     submit.place(x=175, y=400)
 
     window.mainloop()
+
 
 mainscreen()
