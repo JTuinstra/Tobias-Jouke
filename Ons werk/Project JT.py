@@ -19,13 +19,19 @@ class Homepage:
         self.column = column
         self.command = command
 
+    def newWindow(self):
+        window.destroy()
+        window2 = Tk()
+        window2.mainloop()
+
+
     def placeknop(self):
         knopOnScreen = Button(window, text=self.knoptext, padx=30, pady=20, command=self.command)
         knopOnScreen.grid(row=self.row, column=self.column)
 
 
 # We kunnen er ook bij doen dat we hieronder de commands van de knoppen gelijk kunnen kiezen.
-knop1 = Homepage('Knop1', 1, 0, lambda:print("Hello"))
+knop1 = Homepage('Knop1', 1, 0, lambda: knop1.newWindow())
 knop2 = Homepage('Knop2', 2, 0)
 knop1.placeknop(), knop2.placeknop()
 
