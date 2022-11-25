@@ -13,18 +13,19 @@ textOnTop.grid(row=0, column=0)
 
 
 class Homepage:
-    def __init__(self, knoptext, row, column):
+    def __init__(self, knoptext, row, column, command = print("No command added")):
         self.knoptext = knoptext
         self.row = row
         self.column = column
+        self.command = command
 
     def placeknop(self):
-        knopOnScreen = Button(window, text=self.knoptext, padx=30, pady=20)
+        knopOnScreen = Button(window, text=self.knoptext, padx=30, pady=20, command=self.command)
         knopOnScreen.grid(row=self.row, column=self.column)
 
 
 # We kunnen er ook bij doen dat we hieronder de commands van de knoppen gelijk kunnen kiezen.
-knop1 = Homepage('Knop1', 1, 0)
+knop1 = Homepage('Knop1', 1, 0, lambda:print("Hello"))
 knop2 = Homepage('Knop2', 2, 0)
 knop1.placeknop(), knop2.placeknop()
 
