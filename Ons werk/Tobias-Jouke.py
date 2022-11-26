@@ -1,4 +1,4 @@
-import time
+simport time
 from tkinter import *
 from tkinter import messagebox
 
