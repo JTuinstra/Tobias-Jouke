@@ -1,51 +1,40 @@
-from tkinter import *
 from ctypes import windll
+from tkinter import *
 
 windll.shcore.SetProcessDpiAwareness(1)
 
 
 class Boodschappenlijst:
+
     def __init__(self):
-        self.producten = []
-        self.eersteY = 90
-        self.nieuweX = 35
-        self.testX = 0
-        self.count = 1
+        self.inlijst = []
+        self.plaatsX = 50
+        self.plaatsY = 110
+
         self.window = Tk()
-        self.entry = Entry(self.window, font='Arial 20 bold', width=13)
-        self.lijn = Label(self.window, text='-' * 73, background='#121212', foreground='#F0F8FF')
-        self.submit = Button(self.window, text='Submit', font='Arial 13 bold', background='#F0F8FF',
-                             command=self.antwoordinscherm)
-
-    def antwoordinscherm(self):
-        if self.testX == 10:
-            self.nieuweX = 250
-            self.eersteY = 90
-        self.antwoord = self.entry.get()
-        self.producten.append(self.antwoord)
-        if self.antwoord in self.producten:
-            print('Zit al in')
-
-        else:
-            self.producten.append(self.antwoord)
-            print('Zit nu wel in')
-        self.entryInScreen = Label(self.window,
-                                   text='1 x ' + self.antwoord,
-                                   font='arial 20 bold',
-                                   background='#121212',
-                                   foreground='#F0F8FF')
-        self.entryInScreen.place(x=self.nieuweX, y=self.eersteY)
-        self.eersteY += 50
-        self.testX += 1
-
-    def createwindow(self):
-        self.window.configure(background='#121212')
+        self.window.title('Boodschappenlijst')
         self.window.geometry('500x600')
-        self.entry.place(x=60, y=10)
-        self.lijn.place(x=25, y=60)
-        self.submit.place(x=360, y=10)
+        self.window.configure(background='#121212')
+
+        ##############################
+
+        self.submit = Button(self.window, text='Submit', font='Arial 12 bold', command=self.antwoord)
+        self.entry = Entry(self.window, width=20, font='Arial 15 bold')
+        self.lijn = Label(self.window, text='-' * 75, background='#121212', foreground='white')
+        self.getInBeeld = Label(self.window, background='#121212', foreground='white', font='Arial 15 bold')
+
+    def plaaten(self):
+        self.submit.place(x=350, y=25)
+        self.entry.place(x=45, y=28)
+        self.lijn.place(x=20, y=85)
+        self.getInBeeld.place(x=self.plaatsX, y=self.plaatsY)
         self.window.mainloop()
 
+    def antwoord(self):
+        watKomtErin = self.entry.get()
 
-boodschappenlijsje = Boodschappenlijst()
-boodschappenlijsje.createwindow()
+        self.inlijst.append(watKomtErin)
+
+
+boodlijst = Boodschappenlijst()
+boodlijst.plaaten()
