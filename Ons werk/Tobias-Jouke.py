@@ -1,7 +1,6 @@
-simport time
+import time
 from tkinter import *
 from tkinter import messagebox
-
 
 def mainscreen():
     window = Tk()

@@ -21,7 +21,7 @@ class Boodschappenlijst:
         self.submit = Button(self.window, text='Submit', font='Arial 12 bold', command=self.antwoord)
         self.entry = Entry(self.window, width=20, font='Arial 15 bold')
         self.lijn = Label(self.window, text='-' * 75, background='#121212', foreground='white')
-        self.getInBeeld = Label(self.window, background='#121212', foreground='white', font='Arial 15 bold')
+        self.getInBeeld = Label(self.window,text=self.entry.get(), background='#121212', foreground='white', font='Arial 15 bold')
 
     def plaaten(self):
         self.submit.place(x=350, y=25)
@@ -31,10 +31,12 @@ class Boodschappenlijst:
         self.window.mainloop()
 
     def antwoord(self):
-        watKomtErin = self.entry.get()
+        if self.entry.get() in self.inlijst:
+            pass
 
-        self.inlijst.append(watKomtErin)
 
+        else:
+            self.inlijst.append(self.entry.get())
 
 boodlijst = Boodschappenlijst()
 boodlijst.plaaten()
