@@ -138,67 +138,72 @@ def hackPaleis():
 ########################################################
 # BOODSCHAPPENLIJSTJE!
 ########################################################
-def boodschappenlijstje():
-    producten = []
+class Boodschappenlijst:
 
-    eersteY = 90
-    nieuweX = 35
-    testX = 0
-    count = 1
+    def __init__(self):
+        self.inlijst = []
+        self.plaatsX = 50
+        self.plaatsY = 60
+        self.countFornextRow = 0
+        self.productCount = 1
 
-    windll.shcore.SetProcessDpiAwareness(1)
-    window = Tk()
-    window.title('Boodschappenlijstje')
-    window.geometry('500x600')
-    window.configure(background='#121212')
+        self.window = Tk()
+        self.window.title('Boodschappenlijst')
+        self.window.geometry('500x600')
+        self.window.configure(background='#121212')
+
+        ##############################
+
+        self.window.bind('<Return>', self.antwoord)
+        self.submit = Button(self.window, text='Submit', font='Arial 12 bold', command=self.antwoord)
+        self.entry = Entry(self.window, width=20, font='Arial 15 bold')
+        self.lijn = Label(self.window, text='-' * 75, background='#121212', foreground='white')
+
+    def plaaten(self):
+        self.submit.place(x=350, y=25)
+        self.entry.place(x=45, y=28)
+        self.lijn.place(x=20, y=85)
+        self.window.mainloop()
+
+    def antwoord(self, event=None):
+        if len(self.entry.get()) <= 11:  #<----checking if length is too long
+
+            if self.countFornextRow == 10:  # <-----positioning
+                self.plaatsX = 270
+                self.plaatsY = 110
+
+            # If statements voor wat er in entry zit
+            if self.entry.get() in self.inlijst:
+                self.countFornextRow = self.countFornextRow
+                self.productCount += 1
 
 
-    entry = Entry(window, font='Arial 20 bold', width=13)
-    entry.place(x=60, y=10)
-    lijn = Label(window, text='-' * 73, background='#121212', foreground='#F0F8FF')
-    lijn.place(x=25, y=60)
+            else:
+                self.inlijst.append(self.entry.get())
+                self.plaatsY += 50
+                self.countFornextRow += 1
+                self.productCount = 1
+            # If statements voor wat er in entry zit
 
-
-    if testX == 9:
-        nieuweX = 350
-        eersteY = 90
-
-    def antwoordinscherm():
-        global eersteY
-        global testX
-        global nieuweX
-        global producten
-        global count
-        if testX == 10:
-            nieuweX = 250
-            eersteY = 90
-        antwoord = entry.get()
-        if antwoord in producten:
-            print('Zit al in')
+            self.getInBeeld = Label(self.window, text=str(self.productCount) + ' x ' + self.entry.get(),
+                                    background='#121212', foreground='white', font='Arial 15 bold')
+            self.getInBeeld.place(x=self.plaatsX, y=self.plaatsY)
 
         else:
-            producten.append(antwoord)
-            print('Zit nu wel in')
-        entryInScreen = Label(window,
-                              text='1 x ' + antwoord,
-                              font='arial 20 bold',
-                              background='#121212',
-                              foreground='#F0F8FF')
-        entryInScreen.place(x=nieuweX, y=eersteY)
-        eersteY += 50
-        testX += 1
+            messagebox.showinfo(title='Te lang', message='Dit woord is te lang.')
+
 
     ########################################################
     # BOODSCHAPPENLIJSTJE!
     ########################################################
 
-    submit = Button(window, text='Submit', font='Arial 13 bold', background='#F0F8FF', command=antwoordinscherm)
-    submit.place(x=315, y=10)
 
-    window.mainloop()
+def bsl():
+    boodlijst = Boodschappenlijst()
+    boodlijst.plaaten()
 
 
-knopBoodLijst = Button(homepage, text='Boodschappenlijst', font='Arial 20 bold', width=35, command=boodschappenlijstje)
+knopBoodLijst = Button(homepage, text='Boodschappenlijst', font='Arial 20 bold', width=35, command=bsl)
 knopBoodLijst.pack()
 
 tobiasHackerPaleis = Button(homepage, text='Tobias Hack Paleis', font='Arial 20 bold', width=35,
