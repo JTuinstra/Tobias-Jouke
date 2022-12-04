@@ -11,25 +11,35 @@ class CokkieBalzz:
         self.coinsPerClick = 1
         self.balance = 0
 
-        self.image = PhotoImage(file='C:\\Users\\jouke\\Downloads\\cookie.png')
-        self.balanceOnScreen=Label(self.window,text=self.balance,background='white',font='Arial 30 bold')
+        self.cookieImage = PhotoImage(file='C:\\Users\\jouke\\Downloads\\cookie.png')
+        self.shopicon = PhotoImage(file='C:\\Users\\jouke\\Downloads\\shopicon.png')
+
+        self.balanceOnScreen = Label(self.window,
+                                     text=self.balance,
+                                     background='white',
+                                     font='Arial 30 bold')
+
+        self.shopKnop = Button(self.window,
+                               image=self.shopicon,
+                               borderwidth=0)
 
         self.cookie = Button(self.window,
-                             image=self.image,
+                             image=self.cookieImage,
                              background='white',
                              borderwidth=0,
-                             activebackground='white',command=self.click)
-
+                             activebackground='white', command=self.click)
 
     def plaatsen(self):
         self.cookie.place(x=100, y=125)
+        self.shopKnop.place(x=400, y=500)
+
         self.balanceOnScreen.pack(pady=30)
+
         self.window.mainloop()
 
     def click(self):
-        self.balance+=self.coinsPerClick
+        self.balance += self.coinsPerClick
         self.balanceOnScreen.configure(text=self.balance)
-
 
 
 clicker = CokkieBalzz()
