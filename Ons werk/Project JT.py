@@ -158,13 +158,14 @@ def mainPage():
             self.submit = Button(homepage, text='Submit', font='Arial 12 bold', command=self.antwoord)
             self.entry = Entry(homepage, width=20, font='Arial 15 bold')
             self.lijn = Label(homepage, text='-' * 75, background='#121212', foreground='white')
-            self.exitKnop = Button(homepage, text='Exit', font='arial 10 bold',command=lambda: [homepage.destroy(),mainPage()])
+            self.exitKnop = Button(homepage, text='Exit', font='arial 10 bold',
+                                   command=lambda: [homepage.destroy(), mainPage()])
 
         def plaaten(self):
             self.submit.place(x=350, y=25)
             self.entry.place(x=45, y=28)
             self.lijn.place(x=20, y=85)
-            self.exitKnop.place(x=445,y=30)
+            self.exitKnop.place(x=445, y=30)
 
         def antwoord(self, event=None):
             if len(self.entry.get()) <= 11:  # <----checking if length is too long
