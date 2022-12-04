@@ -14,14 +14,15 @@ class CokkieBalzz:
         self.cookieImage = PhotoImage(file='C:\\Users\\jouke\\Downloads\\cookie.png')
         self.shopicon = PhotoImage(file='C:\\Users\\jouke\\Downloads\\shopicon.png')
 
-        self.balanceOnScreen = Label(self.window,
+        self.balanceOnScreen = Label(self.window,  # <----Geld boven scherm
                                      text=self.balance,
                                      background='white',
                                      font='Arial 30 bold')
 
         self.shopKnop = Button(self.window,
                                image=self.shopicon,
-                               borderwidth=0)
+                               borderwidth=0,
+                               background='gray', command=self.shop)
 
         self.cookie = Button(self.window,
                              image=self.cookieImage,
@@ -40,6 +41,10 @@ class CokkieBalzz:
     def click(self):
         self.balance += self.coinsPerClick
         self.balanceOnScreen.configure(text=self.balance)
+
+    def shop(self):
+        self.shopScherm = Canvas(self.window, height=600, width=500, background='white')
+        self.shopScherm.pack()
 
 
 clicker = CokkieBalzz()
