@@ -10,13 +10,9 @@ class CokkieBalzz:
 
         self.coinsPerClick = 1
         self.balance = 0
-        self.winkelItems = {'item1': '$24,99',
-                            'item2': 'Item2',
-                            'item3': 'Item3',
-                            'item4': 'Item4', }
-
-        self.cookieImage = PhotoImage(file='C:\\Users\\jouke\\Downloads\\cookie.png')
-        self.shopicon = PhotoImage(file='C:\\Users\\jouke\\Downloads\\shopicon.png')
+        self.cookieImage = PhotoImage(file='cookie.png')
+        self.shopicon = PhotoImage(file='shopicon.png')
+        self.snorcookie = PhotoImage(file='snor_cookie.png')
 
         self.balanceOnScreen = Label(self.window,  # <----Geld boven scherm
                                      text=self.balance,
@@ -26,7 +22,7 @@ class CokkieBalzz:
         self.shopKnop = Button(self.window,
                                image=self.shopicon,
                                borderwidth=0,
-                               background='gray', command=self.shop)
+                               background='white', command=self.shop)
 
         self.cookie = Button(self.window,
                              image=self.cookieImage,
@@ -34,25 +30,16 @@ class CokkieBalzz:
                              borderwidth=0,
                              activebackground='white', command=self.click)
 
-        #####################################################################################################
         self.shopScherm = Canvas(self.window, height=600, width=500, background='white')
 
-        self.itemLabel1 = Label(self.window, text=self.winkelItems['item1'], font='Arial 18 bold')
-        self.itemLabel2 = Label(self.window, text=self.winkelItems['item2'], font='Arial 18 bold')
-        self.itemLabel3 = Label(self.window, text=self.winkelItems['item3'], font='Arial 18 bold')
-        self.itemLabel4 = Label(self.window, text=self.winkelItems['item4'], font='Arial 18 bold')
-
-        self.item1 = Button(self.window, text=self.winkelItems['item1'], font='Arial 18 bold',
-                            command=lambda: self.extraction(5))
-
-        self.item2 = Button(self.window, text=self.winkelItems['item2'], font='Arial 18 bold',
-                            command=lambda: self.extraction(500))
-
-        self.item3 = Button(self.window, text=self.winkelItems['item3'], font='Arial 18 bold',
-                            command=lambda: self.extraction(1500))
-
-        self.item4 = Button(self.window, text=self.winkelItems['item4'], font='Arial 18 bold',
-                            command=lambda: self.extraction(5000))
+        self.prijzen = {
+            'snor': 5
+            #Hier dus alle andere dingen die je kan kopen.
+        }
+        #####################################################################################################
+        # KNOPPEN & LABELS
+        self.snor = Button(image=self.snorcookie, command=lambda: self.aankoop(self.prijzen['snor']))
+        # KNOPPEN & LABELS
         #####################################################################################################
 
     def plaatsen(self):
@@ -67,30 +54,36 @@ class CokkieBalzz:
         self.balance += self.coinsPerClick
         self.balanceOnScreen.configure(text=self.balance)
 
-    def extraction(self, usage):
-        self.balance-=usage
-        self.balanceOnScreen.configure(text=self.balance)
-
     def shop(self):
         self.shopScherm.pack()
+        self.snor.place(x=90, y=90)
 
-        self.itemLabel1.place(x=60, y=300)
-        self.itemLabel2.place(x=375, y=300)
-        self.itemLabel3.place(x=60, y=500)
-        self.itemLabel4.place(x=375, y=500)
+    def aankoop(self, amountOfCoins):
+        makingSure = Frame(self.window, highlightbackground="black", highlightthickness=5, height=200, width=250,
+                           bg='white', bd=5)
+        makingSure.place(y=150, x=150)
+        notEnoughCoins = Label(makingSure, background='white',
+                               text=f"You don't have enough coins to buy that.\n\nThis costs {amountOfCoins}")
+        areYouSure = Label(makingSure, background='white', text='Are you sure you want to buy that?')
 
-        ##########################################
-        if self.balance >= 5:
-            self.item1.place(x=60, y=300)
+        yes = Button(makingSure, text='Yes', bg='green', command=lambda: ifPressedYes())
+        no = Button(makingSure, text='no', bg='red', command=lambda: makingSure.destroy())
+        ok = Button(makingSure, text='ok', background='green', height=50, width=50,
+                    command=lambda: makingSure.destroy())
 
-        elif self.balance >= 500:
-            self.item2.place(x=375, y=300)
+        if amountOfCoins <= self.balance:
+            areYouSure.place(x=10, y=10)
+            yes.place(x=50, y=100)
+            no.place(x=150, y=100)
 
-        elif self.balance >= 1500:
-            self.item3.place(x=60, y=500)
+            def ifPressedYes():
+                self.balance -= amountOfCoins
+                self.balanceOnScreen.configure(text=self.balance)
+                makingSure.destroy()
 
-        elif self.balance >= 5000:
-            self.item4.place(x=375, y=500)
+        else:
+            notEnoughCoins.place(x=10, y=10)
+            ok.place(x=100, y=100, height=50, width=50)
 
 
 clicker = CokkieBalzz()
