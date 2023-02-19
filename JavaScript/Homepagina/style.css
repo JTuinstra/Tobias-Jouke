@@ -1,0 +1,50 @@
+body {
+    background-color: rgb(49, 51, 56);
+}
+
+
+* {
+    color: white;
+}
+
+
+h1 {
+    font-size: 5em;
+    font-family: math;
+    text-align: center;
+    padding-bottom: .6em;
+    border-bottom: 5px solid;
+    margin-bottom: .9em;
+}
+
+
+a {
+    font-family: monospace;
+    background-color: rgb(49, 51, 56);
+    border: 2px solid;
+    border-radius: 5px;
+
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    padding: 2em;
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+
+a:hover{
+    background-color: rgb(37, 37, 41);
+    padding: 2.5em;
+}
+
+a:active{
+    background-color: rgb(15, 15, 15);
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(1, 3fr);
+    margin: 1em;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Programma 1</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<h1>Boodschappenlijstje</h1>
+
+<h3>Voeg een nieuw item toe aan de boodschappenlijst:</h3>
+
+
+<form>
+    <label for="item"></label><input id="item" placeholder="Item" type="text">
+    <label for="aantal"></label><input id="aantal" placeholder="Aantal" type="text">
+    <input onclick="addItem()" type="button" value="Toevoegen">
+</form>
+
+
+<div id="lijst"></div>
+
+
+<script async src="ProgramOne.js"></script>
+</body>
+</html>
