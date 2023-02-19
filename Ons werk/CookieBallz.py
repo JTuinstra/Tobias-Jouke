@@ -50,9 +50,12 @@ class CokkieBalzz:
         # KNOPPEN & LABELS
         #####################################################################################################
 
+    def updateBalance(self):
+        self.balanceOnScreen.configure(text=self.balance)
+
     def click(self):
         self.balance += self.coinsPerClick
-        self.balanceOnScreen.configure(text=self.balance)
+        self.updateBalance()
 
     def plaatsen(self):
         self.cookie.place(x=100, y=125)
@@ -116,8 +119,8 @@ class CokkieBalzz:
             def ifPressedYes():
                 self.balance -= amountOfCoins
                 self.coinsPerClick *= 2
-                self.DoubleCost *= 2
-                self.balanceOnScreen.configure(text=self.balance)
+                self.DoubleCost *= 12
+                self.updateBalance()
                 self.costdubbel.configure(text='Cost: ' + str(self.DoubleCost))
                 self.makingSure.destroy()
                 self.enable()
