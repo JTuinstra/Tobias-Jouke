@@ -5,16 +5,16 @@ function easy() {
         let count = 0
         let container = document.createElement('div');
         let button = document.createElement('button');
-
-        button.id = 'button' + i;
-        button.innerHTML = '?';
-        button.onclick = function () {
-            button.innerHTML = i;
-            alert(random_number)
-        }
+        count += 1
 
         if (count % 2 == 0) {
-            button.innerHTML = Math.floor(Math.random * 100)
+            random_num = Math.floor(Math.random * 100)
+            button.innerHTML = random_num
+            alert(random_num)
+        }
+
+        button.id = 'button' + i;
+        button.onclick = function () {
         }
 
         document.body.appendChild(container);
