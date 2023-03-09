@@ -1,0 +1,49 @@
+body{
+    background-color: gray;
+}
+
+
+h1{
+    font-size: 50px;
+    color: darkorange;
+    margin-bottom: 100px;
+}
+
+h2{
+    color: black;
+    margin-bottom: -18px;
+}
+
+#kutkleur{
+    color: darkred;
+    margin-top: -135px;
+    margin-left: 400px;
+}
+
+#beginButton{
+    background-color: darkorange;
+    color: white;
+    font-size: 200px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 100px;
+    margin-left: 900px;
+    width: 600px;
+    height: 700px;
+}
+
+#beginButton:hover{
+    background-color: darkred;
+}
+
+#beginButton:active{
+    background-color: wheat;
+    transform: translateY(4px);
+}
+
+#buttonText{
+    font-size: 20px;
+    margin-top: 5000px;
+    margin-bottom: -300px;
+    margin-left: 30px;
+}
