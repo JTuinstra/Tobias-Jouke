@@ -13,22 +13,24 @@ function check() {
 
     if (dom.includes(check)) {
         alert("Wauw, je bent dom! :D\nIk had m kunnen verwachten...")
-    } else if (check === 'ja') {
+
+    } else if (check === 'ja' || check === 'jazeker' || check==='j') {
         if (eindelijk <= 2) {
             alert('Oke, je mag door')
             window.location.href = "quizMain.html";
 
         } else {
-            alert('Man man man is het zo moeilijk om een serieus antwoord te geven?')
-            eindelijk++;
+            alert('Man man man was het zo moeilijk om een serieus antwoord te geven?')
+
         }
 
-    } else if (check === 'nee') {
+    } else if (check === 'nee'|| check === 'n') {
         alert('Oke, doei dan.')
-        window.close();
+        window.location.href = "homePage.html";
 
     }
     else {
         alert("Ik heb geen idee wat voor bullshit je hebt ingevuld, maar het is niet goed.")
+        eindelijk++;
     }
 }
