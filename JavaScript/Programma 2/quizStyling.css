@@ -16,8 +16,9 @@ body{
 }
 
 button{
+
     background-color: darkorange;
-    padding: 80px;
+    padding: 50px;
     font-size: 45px;
     transition-duration: 3s;
 }
@@ -29,4 +30,9 @@ button:hover{
 button:active{
     background-color: purple;
 
+}
+
+#antwoorden{
+    display: flex;
+    justify-content: center;
 }
