@@ -9,3 +9,8 @@ h1{
 input{
     font-size: 100px;
 }
+
+button{
+    background-color: red;
+    font-size: 1000px;
+}

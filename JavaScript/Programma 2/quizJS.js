@@ -1,4 +1,4 @@
-let score = 0;
+    let score = 0;
 let vraag = 1;
 
 let antwoorden = [];
@@ -8,8 +8,6 @@ function antwoordenOpslaan(knop, correctAntwoord) {
     let antwoord = document.getElementById("antwoord" + knop).innerHTML;
     antwoorden.push(vraag + " : " + 'Jouw antwoord: ' + antwoord + ' : ' + 'Goed antwoord: ' + correctAntwoord);
 
-
-    console.log(antwoorden);
 
     return antwoorden;
 }
@@ -29,7 +27,7 @@ function enableButtons() {
     document.getElementById("antwoord4").disabled = false;
 }
 
-function transition(vraagCount, scoreCount, vraagTekst, antwoord1, antwoord2, antwoord3, antwoord4, hoeveelButtons) {
+function transition(vraagCount, scoreCount, vraagTekst, antwoord1, antwoord2, antwoord3, antwoord4, hoeveelButtons, end) {
     document.getElementById("vraag").style.opacity = "0";
     document.getElementById("antwoord1").style.opacity = "0";
     document.getElementById("antwoord2").style.opacity = "0";
@@ -37,9 +35,9 @@ function transition(vraagCount, scoreCount, vraagTekst, antwoord1, antwoord2, an
     document.getElementById("antwoord4").style.opacity = "0";
     document.getElementById("score").style.opacity = "0";
     document.getElementById('vraagTekst').style.opacity = "0";
-    document.getElementById("vraag").style.transition = "opacity 1s";
-    document.getElementById("score").style.transition = "opacity 1s";
-    document.getElementById('vraagTekst').style.transition = "opacity 1s";
+    document.getElementById("vraag").style.transition = "opacity 0.5s";
+    document.getElementById("score").style.transition = "opacity 0.5s";
+    document.getElementById('vraagTekst').style.transition = "opacity 0.5s";
 
     setTimeout(function () {
         document.getElementById("vraag").style.opacity = "1";
@@ -49,9 +47,9 @@ function transition(vraagCount, scoreCount, vraagTekst, antwoord1, antwoord2, an
         document.getElementById("antwoord4").style.opacity = "1";
         document.getElementById("score").style.opacity = "1";
         document.getElementById('vraagTekst').style.opacity = "1";
-        document.getElementById("vraag").style.transition = "opacity 1s";
-        document.getElementById("score").style.transition = "opacity 1s";
-        document.getElementById('vraagTekst').style.transition = "opacity 1s";
+        document.getElementById("vraag").style.transition = "opacity 0.5s";
+        document.getElementById("score").style.transition = "opacity 0.5s";
+        document.getElementById('vraagTekst').style.transition = "opacity 0.5s";
 
         if (hoeveelButtons === true) {
             document.getElementById("antwoord3").style.display = "none";
@@ -67,8 +65,14 @@ function transition(vraagCount, scoreCount, vraagTekst, antwoord1, antwoord2, an
         document.getElementById("antwoord3").style.backgroundColor = "darkorange";
         document.getElementById("antwoord4").style.backgroundColor = "darkorange";
 
-        document.getElementById("vraag").innerHTML = "Vraag " + vraagCount;
-        document.getElementById("score").innerHTML = "Score: " + scoreCount;
+        if (end === 'end') {
+            document.getElementById("vraag").innerHTML = 'Einde';
+            document.getElementById("score").innerHTML = "Je score is: " + scoreCount + "/?";
+
+        } else {
+            document.getElementById("vraag").innerHTML = "Vraag " + vraagCount;
+            document.getElementById("score").innerHTML = "Score: " + scoreCount;
+        }
         document.getElementById("vraagTekst").innerHTML = vraagTekst;
 
         document.getElementById("antwoord1").innerHTML = antwoord1;
@@ -77,7 +81,10 @@ function transition(vraagCount, scoreCount, vraagTekst, antwoord1, antwoord2, an
         document.getElementById("antwoord4").innerHTML = antwoord4
     }, 4000);
 
-    setTimeout(enableButtons, 5500)
+    if (end !== 'end') {
+        setTimeout(enableButtons, 5500)
+    } else {
+    }
 }
 
 
@@ -126,13 +133,12 @@ function antwoord(knop) {
         if (knop === 3) {
             antwoordenOpslaan(knop, 'Amsterdam')
             goedAntwoord(knop)
-            setTimeout(transition, 1000, 2, score, "Wat vind jij echt ons, ons ding?", "Walkie talkies", "CS:GO", "Muziek", "Creative Destruction", false)
-
+            setTimeout(transition, 1000, 2, score, "Wat vind jij echt ons, ons ding?", "Walkie talkies", "CS:GO", "Muziek", "Creative Destruction", false, 'none')
 
         } else {
             antwoordenOpslaan(knop, 'Amsterdam')
             foutAntwoord(knop, 3)
-            setTimeout(transition, 1000, 2, score, "Wat vind jij echt ons, ons ding?", "Walkie talkies", "CS:GO", "Muziek", "Creative Destruction", false)
+            setTimeout(transition, 1000, 2, score, "Wat vind jij echt ons, ons ding?", "Walkie talkies", "CS:GO", "Muziek", "Creative Destruction", false, 'none')
 
 
         }
@@ -142,7 +148,7 @@ function antwoord(knop) {
         if (knop === 1 || knop === 2 || knop === 3 || knop === 4) {
             antwoordenOpslaan(knop, 'Alles')
             allesGoed()
-            setTimeout(transition, 1000, 3, score, "Wie of wat is de echte sprayer?", 'De Russen', 'Ryan', 'Mark Rutte', 'RAM', false)
+            setTimeout(transition, 1000, 3, score, "Wie of wat is de echte sprayer?", 'De Russen', 'Ryan', 'Mark Rutte', 'RAM', false, 'none')
 
         }
 
@@ -151,12 +157,12 @@ function antwoord(knop) {
         if (knop === 4) {
             antwoordenOpslaan(knop, 'RAM')
             goedAntwoord(knop)
-            setTimeout(transition, 1000, 4, score, "Wat is de beste game?", "CS:GO", "Minecraft", "Creative Destruction", "Fortnite", false)
+            setTimeout(transition, 1000, 4, score, "Wat is de beste game?", "CS:GO", "Minecraft", "Creative Destruction", "Fortnite", false, 'none')
 
         } else {
             antwoordenOpslaan(knop, 'RAM')
             foutAntwoord(knop, 4)
-            setTimeout(transition, 1000, 4, score, "Wat is de beste game?", "CS:GO", "Minecraft", "Creative Destruction", "Fortnite", false)
+            setTimeout(transition, 1000, 4, score, "Wat is de beste game?", "CS:GO", "Minecraft", "Creative Destruction", "Fortnite", false, 'none')
 
         }
     } else if (vraag === 4) {
@@ -164,7 +170,7 @@ function antwoord(knop) {
         if (knop === 1 || knop === 2 || knop === 3 || knop === 4) {
             antwoordenOpslaan(knop, 'Alles')
             allesGoed()
-            setTimeout(transition, 1000, 5, score, 'Ben je het eens met de volgende stelling: Oma Plop is de beste rapper?', 'Ja', 'Nee', 'Misschien', 'Ik weet het niet', false)
+            setTimeout(transition, 1000, 5, score, 'Ben je het eens met de volgende stelling: Oma Plop is de beste rapper?', 'Ja', 'Nee', 'Misschien', 'Ik weet het niet', false, 'none')
 
         }
     } else if (vraag === 5) {
@@ -172,7 +178,7 @@ function antwoord(knop) {
         if (knop === 1 || knop === 2 || knop === 3 || knop === 4) {
             antwoordenOpslaan(knop, 'Alles')
             allesGoed()
-            setTimeout(transition, 1000, 6, score, 'Kies een van de volgende dingen:', 'Muziek', 'Gamen', 'Programmeren', 'Koekjes', false)
+            setTimeout(transition, 1000, 6, score, 'Kies een van de volgende dingen:', 'Muziek', 'Gamen', 'Programmeren', 'Koekjes', false, 'none')
 
         }
     } else if (vraag === 6) {
@@ -180,35 +186,74 @@ function antwoord(knop) {
         if (knop === 1 || knop === 2 || knop === 3 || knop === 4) {
             antwoordenOpslaan(knop, 'Alles')
             allesGoed()
-            setTimeout(transition, 1000, 7, score, 'Welke muziek vind je het leukst?', 'Lofi', 'Lofi rap', 'Playlist van Jouke', 'Andere playlist van Jouke', false)
+            setTimeout(transition, 1000, 7, score, 'Welke muziek vind je het leukst?', 'Lofi', 'Lofi rap', 'Playlist van Jouke', 'Andere playlist van Jouke', false, 'none')
         }
 
     } else if (vraag === 7) {
-        antwoordenOpslaan(knop, 'Alles')
-        allesGoed()
-        einde()
+
+        if (knop === 1 || knop === 2 || knop === 3 || knop === 4) {
+            antwoordenOpslaan(knop, 'Alles')
+            allesGoed()
+            setTimeout(transition, 1000, 8, score, 'Gefeliciteerd nog', 'Ja', 'Hou je bek', 'Nee', 'Dankjewel', false, 'none')
+        }
+    } else if (vraag === 8) {
+        if (knop === 1 || knop === 2 || knop === 3 || knop === 4) {
+            antwoordenOpslaan(knop, 'Alles')
+            allesGoed()
+            setTimeout(transition, 1000, '9', score, 'Dakota?', 'Dakota', 'Ja', 'Dakota', 'Nee', false, 'none')
+            setTimeout(einde, 1000, score)
+        }
     }
 }
 
-function einde() {
-    document.getElementById("vraag").innerHTML = "Einde";
-    document.getElementById("score").innerHTML = "Score: " + score;
-    document.getElementById("vraagTekst").innerHTML = "Dit was het einde van de quiz. Bedankt voor het spelen!";
-    document.getElementById("antwoord1").style.display = "none";
-    document.getElementById("antwoord2").style.display = "none";
-    document.getElementById("antwoord3").style.display = "none";
-    document.getElementById("antwoord4").style.display = "none";
-    disableButtons()
+function einde(eindscore) {
 
-    let h2 = document.createElement("h2");
-    h2.innerHTML = "Je antwoorden:";
-    document.body.appendChild(h2);
-
-    for (let i = 0; i < antwoorden.length; i++) {
-        let create = document.createElement("p");
-        create.innerHTML = antwoorden[i];
-        document.body.appendChild(create);
+    function fallIn(create) {
+        create.style.scale = "1";
     }
+
+    let vraag = document.getElementById("vraag");
+    let score = document.getElementById("score");
+    let vraagTekst = document.getElementById("vraagTekst");
+    let antwoord1 = document.getElementById("antwoord1");
+    let antwoord2 = document.getElementById("antwoord2");
+    let antwoord3 = document.getElementById("antwoord3");
+    let antwoord4 = document.getElementById("antwoord4");
+
+    vraagTekst.style.scale = "0";
+    antwoord1.style.scale = "0";
+    antwoord2.style.scale = "0";
+    antwoord3.style.scale = "0";
+    antwoord4.style.scale = "0";
+
+    vraag.innerHTML = "Einde";
+    score.innerHTML = "Je score is: " + eindscore + "/7";
+
+
+    setTimeout(function () {
+        document.getElementById("vraag").innerHTML = "Einde";
+
+        disableButtons()
+
+        let newDIV = document.createElement("div");
+        newDIV.id = "eind";
+        document.body.appendChild(newDIV);
+
+        console.log(antwoorden)
+        for (let i = 0; i < antwoorden.length; i++) {
+            let create = document.createElement("p");
+            create.style.scale = "0";
+
+            setTimeout(fallIn, 1000, create)
+            if (i === 0) {
+                create.style.marginTop = "-170px";
+            }
+
+            create.innerHTML = antwoorden[i];
+            newDIV.appendChild(create);
+
+        }
+    }, 5000)
 
 
 }
