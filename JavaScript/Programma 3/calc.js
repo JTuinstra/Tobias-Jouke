@@ -11,6 +11,12 @@ function calculate() {
 }
 
 function add(id) {
+    let possible = [1, 2, 3, 4, 5, 6, 7, 8, 9, '+', '-', '*', '/']
+
+    if (!possible.includes(sum)) {
+        alert('Please use numbers and operators only.');
+    }
+
     let operators = ['+', '-', '*', '/'];
     if (id === 'clear') {
         sum = '';
