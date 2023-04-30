@@ -15,6 +15,7 @@ function add(id) {
 
     if (!possible.includes(sum)) {
         alert('Please use numbers and operators only.');
+        return;
     }
 
     let operators = ['+', '-', '*', '/'];
