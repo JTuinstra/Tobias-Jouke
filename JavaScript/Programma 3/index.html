@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+
+<label>
+    <input id="sum" style="width:79%" type="text" value="">
+    <input id="clear" onclick="add('clear')" type="button" value="Clear">
+</label>
+
+
+<div class="container" style="margin-top: 4em">
+    <input id="1" onclick="add(1)" style="margin-left: 2.5em" type="button" value="1">
+    <input id="2" onclick="add(2)" type="button" value="2">
+    <input id="3" onclick="add(3)" type="button" value="3">
+    <input id="+" onclick="add('+')" type="button" value="+">
+    <input id="4" onclick="add(4)" style="margin-left: 2.5em" type="button" value="4">
+    <input id="5" onclick="add(5)" type="button" value="5">
+    <input id="6" onclick="add(6)" type="button" value="6">
+    <input id="-" onclick="add('-')" type="button" value="-">
+    <input id="7" onclick="add(7)" style="margin-left: 2.5em    " type="button" value="7">
+    <input id="8" onclick="add(8)" type="button" value="8">
+    <input id="9" onclick="add(9)" type="button" value="9">
+    <input id="*" onclick="add('*')" type="button" value="*">
+    <input id="0" onclick="add(0)" style="margin-left: 2.5em" type="button" value="0">
+    <input id="." onclick="add('.')" type="button" value=".">
+    <input id="/" onclick="add('/')" type="button" value="/">
+    <input id="=" onclick="add('submit')" type="submit" value="=">
+
+</div>
+
+<script async src="calc.js"></script>
+</body>
+</html>
