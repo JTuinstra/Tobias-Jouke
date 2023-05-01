@@ -34,3 +34,23 @@ button:active {
     position: fixed;
     transition-duration: 1000ms;
 }
+
+input{
+    margin: 0 0 10em 10em ;
+    padding: 24px 40px;
+    border: 4px solid black;
+    border-radius: 0.6em;
+    background-color: green;
+    transition-duration: 100ms;
+}
+
+input:hover{
+    background-color: darkgreen;
+}
+
+input:active{
+    background-color: darkgreen;
+    box-shadow: 0 8px ;
+    transform: translateY(4px);
+}
+
