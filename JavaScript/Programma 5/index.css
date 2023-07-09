@@ -1,0 +1,11 @@
+button {
+    outline: none;
+    border: none;
+    background-color: lightblue;
+    padding-bottom: 2em;
+    padding-left: 2em;
+}
+
+button:active {
+    background-color: aquamarine;
+}
