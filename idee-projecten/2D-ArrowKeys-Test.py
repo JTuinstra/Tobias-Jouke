@@ -56,3 +56,5 @@ subject.placeRandom()
 subject.move()
 
 # next I have to make something like if it is at the same spot as target then _something_
+
+# It's better to make it so that if y or x is a certain distance far off
