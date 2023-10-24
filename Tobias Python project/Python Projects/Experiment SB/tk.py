@@ -8,7 +8,7 @@ class Tkframe:
         self.saving = False
 
         self.window = tk.Tk()
-        self.window.geometry('325x225')  # Adjusted height for a cleaner interface
+        self.window.geometry('325x225')
         self.window.configure(bg='#0D1117')
         self.window.title("Voice Player")
 
@@ -31,9 +31,12 @@ class Tkframe:
 
         self.get_voices()
 
+        self.window.bind("<Return>", self.speak)
+        self.window.bind("<Shift-Return>", self.save_to_file)
+
         self.window.mainloop()
 
-    def speak(self):
+    def speak(self, event=None):
         self.set_voice(self.voice_var)
         to_say = self.to_say.get()
 
@@ -62,7 +65,7 @@ class Tkframe:
             voice_name = voice.name
             self.voice_dict[voice_name] = voice_id
 
-        self.voice_var.set(list(self.voice_dict.keys())[0])  # Set the default value
+        self.voice_var.set(list(self.voice_dict.keys())[0])
         self.voice_menu = tk.OptionMenu(self.window, self.voice_var, *self.voice_dict.keys())
         self.voice_menu.grid(row=5, column=0, columnspan=2, pady=0)
 
@@ -71,6 +74,6 @@ class Tkframe:
         self.engine.setProperty('voice', nVoice)
 
 
-    def save_to_file(self):
+    def save_to_file(self, event=None):
         self.saving = True
         self.speak()
