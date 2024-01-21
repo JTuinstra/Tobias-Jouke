@@ -1,10 +1,18 @@
 extends CharacterBody2D
 
+<<<<<<< HEAD
 @export var SPEED = 400
 @export var GRAVITY =55
 @export var JUMP = 650
 @export var JUMP_VELOCITY = -650
 @export var DASH_LENGHT = 13000
+=======
+@export var SPEED = 600
+@export var GRAVITY = 100
+@export var JUMP = 1200
+@export var JUMP_VELOCITY = -1200
+@export var DASH_LENGHT = 12000
+>>>>>>> a611f3945607b2f2399ba76ab70ae71f121967dc
 @onready var deathAnimation = get_parent().get_node("AnimationPlayer")
 var canDash = true
 var canDoubleJump = true

@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
+<<<<<<< HEAD
+=======
+window/stretch/mode="viewport"
+>>>>>>> a611f3945607b2f2399ba76ab70ae71f121967dc
 
 [input]
 
