@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
-@export var SPEED = 300
-@export var GRAVITY = 50
-@export var JUMP = 600
-@export var JUMP_VELOCITY = -600
-@export var DASH_LENGHT = 6000
+@export var SPEED = 400
+@export var GRAVITY =55
+@export var JUMP = 650
+@export var JUMP_VELOCITY = -650
+@export var DASH_LENGHT = 13000
 @onready var deathAnimation = get_parent().get_node("AnimationPlayer")
 var canDash = true
 var canDoubleJump = true
-var canJump
+var canJump = true
 var screen_size = null
 var player = null
 
@@ -18,9 +18,7 @@ func _ready():
 	player = $AnimatedSprite2D
 
 func _physics_process(delta):
-	
-	
-	if position.y > 1000:
+	if position.y > 1200:
 		deathAnimation.play("fade_in")
 	
 	movement()
@@ -91,9 +89,18 @@ func movement():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "fade_in":
-		position = Vector2(50, 447)
+		position = Vector2(88, 792)
 		deathAnimation.play("fade_out")
+		
+		#code below causes tsunami
+		#if position.y <1500:
+			#$AudioStreamPlayer2D.play()
+		
 
 
 func _on_collision_shape_2d_child_entered_tree(node):
 	print(node)
+
+
+func _on_audio_stream_player_2d_finished():
+	$AudioStreamPlayer2D.play()

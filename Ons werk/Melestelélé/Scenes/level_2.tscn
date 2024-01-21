@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://deubhjip6jmfn"]
+
+[ext_resource type="Texture2D" uid="uid://cvgllwtra7u2b" path="res://Art/environment/Background/back.png" id="1_ee6sv"]
+[ext_resource type="PackedScene" uid="uid://c8grhiv68u0ko" path="res://Scenes/player.tscn" id="2_lof7s"]
+[ext_resource type="PackedScene" uid="uid://c4r7nwpmi083w" path="res://Scenes/floorGroundBlock.tscn" id="3_hvyh1"]
+
+[sub_resource type="Animation" id="Animation_2lj45"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_hjq11"]
+resource_name = "fade_in"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bcvsa"]
+resource_name = "fade_out"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6n6ci"]
+_data = {
+"RESET": SubResource("Animation_2lj45"),
+"fade_in": SubResource("Animation_hjq11"),
+"fade_out": SubResource("Animation_bcvsa")
+}
+
+[node name="Level2" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540.5)
+scale = Vector2(5, 4.49584)
+texture = ExtResource("1_ee6sv")
+
+[node name="Player" parent="." instance=ExtResource("2_lof7s")]
+
+[node name="Tile" parent="." instance=ExtResource("3_hvyh1")]
+scale = Vector2(4, 4)
+layer_0/tile_data = PackedInt32Array(983040, 65536, 1, 1048576, 65536, 2, 1048577, 131072, 2, 1114114, 196608, 3, 983042, 196608, 1, 983041, 131072, 1, 1114113, 131072, 3, 1114112, 65536, 3, 917507, 1245184, 1, 983043, 1245184, 2, 917508, 1310720, 1, 983044, 1310720, 2, 1048579, 131072, 2, 1048580, 131072, 2, 1048578, 131072, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6n6ci")
+}
+autoplay = "fade_out"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = -4.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="Player" method="_on_animation_player_animation_finished"]

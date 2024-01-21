@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8grhiv68u0ko"]
+[gd_scene load_steps=17 format=3 uid="uid://c8grhiv68u0ko"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_55qcl"]
 [ext_resource type="Texture2D" uid="uid://c6u7uadmuufct" path="res://Art/sprites/player/idle/player-idle-1.png" id="2_2f76o"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d08u4xlj0bwlg" path="res://Art/sprites/player/run/player-run-4.png" id="11_fr7b2"]
 [ext_resource type="Texture2D" uid="uid://cx1co57fku8ej" path="res://Art/sprites/player/run/player-run-5.png" id="12_6tci8"]
 [ext_resource type="Texture2D" uid="uid://cy8ge7lsvkxd" path="res://Art/sprites/player/run/player-run-6.png" id="13_ge6es"]
+[ext_resource type="AudioStream" uid="uid://d2206x8mfsys5" path="res://Sounds/Moeder.mp3" id="14_uiybr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ni8d1"]
 animations = [{
@@ -82,7 +83,8 @@ animations = [{
 size = Vector2(24, 44)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(508, 341)
+position = Vector2(88, 792)
+scale = Vector2(1.5, 1.5)
 collision_mask = 3
 script = ExtResource("1_55qcl")
 
@@ -94,3 +96,8 @@ animation = &"run"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 10)
 shape = SubResource("RectangleShape2D_2cfqp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_uiybr")
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
