@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var GRAVITY = 50
 @export var JUMP = 600
 @export var JUMP_VELOCITY = -600
+@export var DASH_LENGHT = 6000
 @onready var deathAnimation = get_parent().get_node("AnimationPlayer")
 var canDash = true
 var canDoubleJump = true
@@ -26,22 +27,6 @@ func _physics_process(delta):
 
 func movement():
 	velocity.y += GRAVITY
-	
-	if Input.is_action_just_pressed("dash"):
-		if canDash == true:
-			if player.flip_h == true:
-				if Input.is_action_pressed("up"):
-					position = Vector2(position.x - 75, position.y - 75)
-				else:
-					position = Vector2(position.x - 150, position.y)
-			else:
-				if Input.is_action_pressed("up"):
-					position = Vector2(position.x + 75, position.y - 75)
-				else:
-					position = Vector2(position.x + 150, position.y)
-			
-			canDash = false
-
 	if is_on_floor():
 		if player.animation == "fall":
 			canDash = true			
@@ -89,6 +74,19 @@ func movement():
 
 		if velocity.x == 0 and velocity.y == 0:
 			player.play("idle")
+	
+	
+	if Input.is_action_just_pressed("dash"):
+		if canDash == true:
+			if player.flip_h == true:
+				velocity.x = -DASH_LENGHT
+
+			else:
+				velocity.x = +DASH_LENGHT
+				
+			
+			canDash = false
+
 
 
 	move_and_slide()

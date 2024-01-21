@@ -78,9 +78,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_si0vt"]
-radius = 19.5
-height = 48.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cfqp"]
+size = Vector2(24, 44)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(508, 341)
@@ -93,5 +92,5 @@ sprite_frames = SubResource("SpriteFrames_ni8d1")
 animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("CapsuleShape2D_si0vt")
+position = Vector2(2, 10)
+shape = SubResource("RectangleShape2D_2cfqp")
