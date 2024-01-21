@@ -79,15 +79,12 @@ func movement():
 	if Input.is_action_just_pressed("dash"):
 		if canDash == true:
 			if player.flip_h == true:
-				velocity.x = -DASH_LENGHT
+				velocity.x -= DASH_LENGHT
 
 			else:
-				velocity.x = +DASH_LENGHT
+				velocity.x += DASH_LENGHT
 				
-			
 			canDash = false
-
-
 
 	move_and_slide()
 

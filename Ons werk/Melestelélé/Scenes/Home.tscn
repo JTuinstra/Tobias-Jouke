@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://hjybrkrercvo"]
+[gd_scene load_steps=12 format=3 uid="uid://hjybrkrercvo"]
 
 [ext_resource type="Texture2D" uid="uid://cvgllwtra7u2b" path="res://Art/environment/Background/back.png" id="1_48atr"]
 [ext_resource type="PackedScene" uid="uid://c4r7nwpmi083w" path="res://Scenes/floorGroundBlock.tscn" id="2_mk16f"]
 [ext_resource type="PackedScene" uid="uid://c8grhiv68u0ko" path="res://Scenes/player.tscn" id="2_scfv6"]
 [ext_resource type="Script" path="res://Scripts/deathCount.gd" id="3_5gl7a"]
+[ext_resource type="Script" path="res://Scenes/Teleporter.gd" id="5_wy447"]
+[ext_resource type="PackedScene" uid="uid://bs0baja5sq1fm" path="res://Scenes/level2.tscn" id="6_1j0rq"]
 
 [sub_resource type="Animation" id="Animation_2lj45"]
 length = 0.001
@@ -89,12 +91,15 @@ offset_right = 1153.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Teleporter" type="Area2D" parent="."]
+script = ExtResource("5_wy447")
+level_2 = ExtResource("6_1j0rq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleporter"]
 position = Vector2(1141, 354)
 shape = SubResource("SegmentShape2D_4m8pw")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="Player" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="deathCount" method="_on_animation_player_animation_finished"]
-[connection signal="child_entered_tree" from="Area2D/CollisionShape2D" to="Player" method="_on_collision_shape_2d_child_entered_tree"]
+[connection signal="body_entered" from="Teleporter" to="Teleporter" method="_on_body_entered"]
+[connection signal="child_entered_tree" from="Teleporter/CollisionShape2D" to="Player" method="_on_collision_shape_2d_child_entered_tree"]
